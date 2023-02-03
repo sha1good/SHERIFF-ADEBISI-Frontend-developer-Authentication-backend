@@ -27,7 +27,7 @@ app.use((request, response, next) =>{
 
 //Middlewares
 app.use(cors({
-  origin: "http://localhost:3000"
+  origin: "https://brainstormforce-app.netlify.app"
 }));
 app.use(cookieParser());
 app.use(express.json());
