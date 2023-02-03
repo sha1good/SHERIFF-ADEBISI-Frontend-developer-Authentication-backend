@@ -17,17 +17,7 @@ const UserSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-    },
-    subscribeNumbers: {
-      type: Number,
-      default: 0,
-    },
-    subscribeUsers: {
-      type: [String],
-    },
-    fromGoogle: {
-      type: Boolean,
-      default: false,
+      required: true,
     },
   },
   { timestamps: true }

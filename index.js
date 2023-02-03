@@ -1,9 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import userRoutes from "./routes/Users.js";
-import videoRoutes from "./routes/Videos.js";
-import commentRoutes from "./routes/Comments.js";
 import authRoutes from "./routes/Auths.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -22,14 +19,20 @@ const connect = () => {
     });
 };
 
+app.use((request, response, next) =>{
+  response.header("Access-Control-Allow-Credentials", true);
+  next();
+})
+
+
 //Middlewares
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:3000"
+}));
 app.use(cookieParser());
 app.use(express.json());
 app.use("/api/auth", authRoutes);
-app.use("/api/users", userRoutes);
-app.use("/api/videos", videoRoutes);
-app.use("/api/comments", commentRoutes);
+
 
 //error handler middleware
 app.use((error, request, response, next) =>{
@@ -42,7 +45,7 @@ app.use((error, request, response, next) =>{
     })
 })
 
-app.listen(8800, () => {
+app.listen(8888, () => {
   connect();
   console.log("Connected to Server");
 });
